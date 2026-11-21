@@ -1,0 +1,11 @@
+node_modules
+dist
+dist-ssr
+.env
+.env.local
+.DS_Store
+# Made by scripts/images.js before dev and build
+public/images/generated/
+src/generated/
+# Contact-form messages (visitors' names and emails), saved by server/contact-inbox.js
+messages/

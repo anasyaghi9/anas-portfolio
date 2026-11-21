@@ -1,0 +1,199 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+/* Tailwind's theme reads the site's own tokens below; "inline" makes utilities use them directly,
+   so the dark theme switches every colour in one place. */
+@theme inline {
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-brand: hsl(var(--tone-accent));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --font-sans: var(--family-body);
+  --font-display: var(--family-display);
+  --font-mono: var(--family-mono);
+}
+
+@utility container-page {
+  width: 100%;
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+@utility section-shell {
+  border-top-width: 1px;
+  border-color: hsl(var(--border) / 0.7);
+  padding-block: 5rem;
+
+  @media (min-width: 768px) {
+    padding-block: 7rem;
+  }
+}
+
+@utility label-mono {
+  font-family: var(--family-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: hsl(var(--muted-foreground));
+  font-size: 11px;
+
+  /* Any letter-spacing pulls Arabic letters apart, and JetBrains Mono has no Arabic glyphs. */
+  &:lang(ar) {
+    font-family: 'JetBrains Mono', var(--family-arabic);
+    letter-spacing: 0;
+  }
+}
+
+@utility font-mono {
+  &:lang(ar) {
+    font-family: 'JetBrains Mono', var(--family-arabic);
+    letter-spacing: 0;
+  }
+}
+
+@utility surface-grid {
+  background-image:
+    linear-gradient(
+      to right,
+      hsl(var(--tone-border) / 0.55) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      hsl(var(--tone-border) / 0.55) 1px,
+      transparent 1px
+    );
+  background-size: 56px 56px;
+}
+
+@utility reveal {
+  /* Scroll-in animation used by <Reveal>. */
+  opacity: 0;
+  transform: translate3d(0, var(--reveal-y, 18px), 0);
+  transition:
+    opacity 0.6s var(--ease-out-soft) var(--reveal-delay, 0s),
+    transform 0.6s var(--ease-out-soft) var(--reveal-delay, 0s);
+}
+
+@utility reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Design tokens, copied from the original site. Values are "H S% L%" so they can take an opacity.
+   Named --tone-* and --family-* so they never clash with Tailwind's own --color-* and --font-*. */
+@layer base {
+  :root {
+    --tone-background: 42 33% 97%;
+    --tone-surface: 0 0% 100%;
+    --tone-text-primary: 40 10% 9%;
+    --tone-text-secondary: 40 6% 40%;
+    --tone-border: 40 14% 87%;
+    --tone-accent: 158 34% 27%;
+    --tone-danger: 4 68% 48%;
+
+    --background: var(--tone-background);
+    --foreground: var(--tone-text-primary);
+    --card: var(--tone-surface);
+    --card-foreground: var(--tone-text-primary);
+    --primary: var(--tone-text-primary);
+    --primary-foreground: var(--tone-background);
+    --secondary: 40 22% 93%;
+    --secondary-foreground: var(--tone-text-primary);
+    --muted: 40 22% 93%;
+    --muted-foreground: var(--tone-text-secondary);
+    --destructive: var(--tone-danger);
+    --destructive-foreground: 0 0% 100%;
+    --border: var(--tone-border);
+    --input: var(--tone-border);
+    --ring: 158 34% 27%;
+
+    --family-body: 'Instrument Sans', 'IBM Plex Sans Arabic', ui-sans-serif, system-ui, sans-serif;
+    --family-display: 'Instrument Sans', 'IBM Plex Sans Arabic', ui-sans-serif, system-ui, sans-serif;
+    --family-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --family-arabic: 'IBM Plex Sans Arabic', 'Instrument Sans', ui-sans-serif, sans-serif;
+
+    --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .dark {
+    --tone-background: 60 5% 6%;
+    --tone-surface: 60 4% 9%;
+    --tone-text-primary: 42 24% 94%;
+    --tone-text-secondary: 45 7% 62%;
+    --tone-border: 60 4% 18%;
+    --tone-accent: 156 30% 62%;
+    --tone-danger: 4 70% 62%;
+
+    --secondary: 60 4% 14%;
+    --muted: 60 4% 14%;
+    --destructive-foreground: 60 6% 8%;
+    --ring: 156 30% 62%;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+    outline-color: hsl(var(--ring) / 0.5);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    font-family: var(--family-body);
+    color: hsl(var(--foreground));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'ss01' 1, 'cv11' 1;
+    overflow-x: hidden;
+  }
+
+  [dir='rtl'] body {
+    font-family: var(--family-arabic);
+  }
+
+  ::selection {
+    background: hsl(var(--tone-accent) / 0.18);
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--tone-accent));
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    ::before,
+    ::after {
+      transition-duration: 0.001ms !important;
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+}

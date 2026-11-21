@@ -1,0 +1,34 @@
+{
+  "name": "anas-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=26"
+  },
+  "scripts": {
+    "predev": "node scripts/images.js",
+    "dev": "vite",
+    "prebuild": "node scripts/images.js",
+    "build": "vite build && vite build --ssr src/entry-server.jsx --outDir dist-ssr && node scripts/prerender.js",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "check": "node scripts/check-content.js",
+    "images": "node scripts/images.js"
+  },
+  "dependencies": {
+    "lucide-react": "1.77.0",
+    "marked": "18.2.1",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "react-router": "8.5.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "4.3.5",
+    "@vitejs/plugin-react": "6.3.0",
+    "sharp": "0.35.5",
+    "tailwindcss": "4.3.5",
+    "vite": "8.3.8",
+    "vitest": "5.1.1"
+  }
+}

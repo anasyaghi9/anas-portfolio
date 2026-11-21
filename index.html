@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Anas Atallah Yaghi — Backend Developer</title>
+    <meta
+      name="description"
+      content="Backend developer working with Python, Django, Django REST Framework and PostgreSQL. Selected projects, case studies and contact."
+    />
+    <link rel="icon" href="/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+    <script>
+      // Before first paint: apply the saved theme, and set Arabic direction for /ar addresses
+      // (prerendered pages already have it; the dev server does not).
+      (function () {
+        var root = document.documentElement;
+        if (/^\/ar(\/|$)/.test(location.pathname)) {
+          root.lang = 'ar';
+          root.dir = 'rtl';
+        }
+        try {
+          if (localStorage.getItem('anas-theme') === 'dark') {
+            root.classList.add('dark');
+            root.style.colorScheme = 'dark';
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <noscript>
+      <style>
+        .reveal { opacity: 1 !important; transform: none !important; }
+        .img-fade { opacity: 1 !important; filter: none !important; transform: none !important; }
+      </style>
+    </noscript>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
